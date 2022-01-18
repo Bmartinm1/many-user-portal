@@ -7,6 +7,7 @@ function EnlistForm(props) {
 	const nameInputRef = useRef();
 	const emailInputRef = useRef();
 	const walletAddressInputRef = useRef();
+	const passwordInputRef = useRef();
 
 	function submitHandler(user) {
 		user.preventDefault();
@@ -14,11 +15,13 @@ function EnlistForm(props) {
 		const enteredName = nameInputRef.current.value;
 		const enteredEmail = emailInputRef.current.value;
 		const enteredWalletAddress = walletAddressInputRef.current.value;
+		const enteredPassword = passwordInputRef.current.value;
 
 		const userData = {
 			name: enteredName,
 			email: enteredEmail,
 			walletAddress: enteredWalletAddress,
+			password: enteredPassword,
 		};
 
 		props.onAddUser(userData);
@@ -29,15 +32,37 @@ function EnlistForm(props) {
 			<form className={classes.form} onSubmit={submitHandler}>
 				<div className={classes.control}>
 					<label htmlFor='name'>Full Name</label>
-					<input type='text' required id='name' ref={nameInputRef} />
+					<input 
+            type='text' 
+            required 
+            id='name' 
+            ref={nameInputRef} />
 				</div>
 				<div className={classes.control}>
 					<label htmlFor='email'>Email</label>
-					<input type='text' required id='email' ref={emailInputRef} />
+					<input 
+            type='text' 
+            required 
+            id='email' 
+            ref={emailInputRef} />
 				</div>
 				<div className={classes.control}>
 					<label htmlFor='walletAddress'>Wallet Address</label>
-					<input type='text' required id='walletAddress' ref={walletAddressInputRef} />
+					<input
+						type='text'
+						required
+						id='walletAddress'
+						ref={walletAddressInputRef}
+					/>
+				</div>
+				<div className={classes.control}>
+					<label htmlFor='password'>Enter password</label>
+					<input
+						type='text'
+						required
+						id='password'
+						ref={passwordInputRef}
+					/>
 				</div>
 				<div className={classes.actions}>
 					<button>Enlist</button>

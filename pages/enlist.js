@@ -6,6 +6,7 @@ function EnlistPage() {
   const router = useRouter();
 
   async function addUserHandler(enteredUserData) {
+
     const response = await fetch('/api/new-user', {
       method: 'POST',
       body: JSON.stringify(enteredUserData),
@@ -15,6 +16,7 @@ function EnlistPage() {
     });
 
     const data = await response.json();
+    console.log(enteredUserData)
     console.log(data)
 
     router.push('/login');
