@@ -1,13 +1,27 @@
+import { useRouter } from 'next/router';
 
+import EnlistForm from '../components/users/EnlistForm';
 
-function HomePage() {
-  return (
-    <div>
-      <h1>Hooman wants YOU to join the Bit Force</h1>
-      <a href='./enlist' className='button'>
-      Enlist</a>
-    </div>
-  )
+function EnlistPage() {
+	const router = useRouter();
+
+	async function addUserHandler(enteredUserData) {
+		const response = await fetch('/api/new-user', {
+			method: 'POST',
+			body: JSON.stringify(enteredUserData),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		const data = await response.json();
+		console.log(enteredUserData);
+		console.log(data);
+
+		router.push('/login');
+	}
+
+	return <EnlistForm onAddUser={addUserHandler} />;
 }
 
-export default HomePage;
+export default EnlistPage;
